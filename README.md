@@ -12,3 +12,15 @@ spring:
     properties:
       hibernate.default_batch_fetch_size: 1000
 ```
+* 부모자식 교차 직렬화 무한루프 관련 오류시
+```bash
+@ManyToOne
+@JoinColumn(name="pkey")
+@JsonBackReference <<
+private Parent parent;
+
+
+@OneToMany(mappedBy="cKey ")
+@JsonManagedReference <<
+private List<Child> child;
+```
