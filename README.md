@@ -7,10 +7,14 @@
 * oneToMany 2개 이상에 fetch join 2개이상 사용하면.. MultipleBagFetchException이 난다.
 * 애초에 이런구조로 만들지 말던지 @Query를 쓰면 맘편하지만 1개만 fetchJoin 하던지 아래 옵션으로 n+1보다 in을 유도함
 ```bash
+// 글로벌
 spring:
   jpa:
     properties:
       hibernate.default_batch_fetch_size: 1000
+      
+// 기능별
+@BatchSize(size = 10)
 ```
 * 부모자식 교차 직렬화 무한루프 관련 오류시
 ```bash
