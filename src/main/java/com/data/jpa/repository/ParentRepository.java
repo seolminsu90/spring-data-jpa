@@ -9,12 +9,12 @@ import org.springframework.data.jpa.repository.Query;
 import com.data.jpa.domain.Parent;
 
 public interface ParentRepository extends JpaRepository<Parent, Long>{
-    // Left Join 만 된다.
+    // Spring에서 지원한 EntityGraph - Left Join 만 된다.
     @EntityGraph(attributePaths = "childrens", type = EntityGraph.EntityGraphType.LOAD)
     @Query(value = "SELECT p FROM Parent p")
     List<Parent> findByAllByEntityGraph();
     
-    // [LEFT [OUTER] | INNER] join fetch
+    // JPA진영에서 지원한 fetch join - [LEFT [OUTER] | INNER] join fetch
     @Query(value = "SELECT distinct p FROM Parent p join fetch p.childrens")
     List<Parent> findByAllByJoinFetch();
 }
