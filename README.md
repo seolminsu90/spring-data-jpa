@@ -18,6 +18,11 @@ spring:
 ```
 * 부모자식 교차 직렬화 무한루프 관련 오류시
 ```bash
+# 1. 키 기반으로 중복 제외
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class)
+
+
+# 2. 주/부 나눔.
 @ManyToOne
 @JoinColumn(name="pkey")
 @JsonBackReference <<
@@ -27,4 +32,6 @@ private Parent parent;
 @OneToMany(mappedBy="cKey ")
 @JsonManagedReference <<
 private List<Child> child;
+
+## 1이 간편하고 양방향 조회하기 
 ```
