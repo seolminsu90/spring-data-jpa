@@ -15,6 +15,18 @@ spring:
       
 // 기능별
 @BatchSize(size = 10)
+
+// Nested Join fetch
+SELECT DISTINCT a, b 
+FROM A a
+LEFT JOIN a.bs b
+LEFT JOIN FETCH a.bs
+LEFT JOIN FETCH b.c
+WHERE a.id = :id
+
+// Nested EntityGraph
+@EntityGraph(attributePaths = {"questionReceive", "questionReceive.counselor"})
+List<Question> findByCustomerIdOrderBySeqDesc(String customerId);
 ```
 * 부모자식 교차 직렬화 무한루프 관련 오류시
 ```bash
