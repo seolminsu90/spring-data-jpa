@@ -24,7 +24,7 @@ LEFT JOIN FETCH a.bs
 LEFT JOIN FETCH b.c
 WHERE a.id = :id
 
-// Nested EntityGraph
+// Nested EntityGraph ( A -> A.b -> A.b.c )
 @EntityGraph(attributePaths = {"questionReceive", "questionReceive.counselor"})
 List<Question> findByCustomerIdOrderBySeqDesc(String customerId);
 ```
