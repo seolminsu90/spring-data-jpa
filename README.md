@@ -51,14 +51,12 @@ private List<Child> child;
 
 ## 1이 간편하고 양방향 조회하기 
 ```
-
+---
 동시성 이슈 처리 관련 메모
 
-1. 낙관적 잠금
-Versioning 컬럼 생성하여 업데이트 대상 프로그래밍 레벨에서 버전 관리
+1. 낙관적 잠금(service)
+- Versioning 컬럼 생성하여 업데이트 대상 프로그래밍 레벨에서 버전 관리
 
-2. 비관적 잠금
-LockModeType.PESSIMISTIC_WRITE
-명시적 쓰기락
-LockModeType.PESSIMISTIC_READ
-명시적 읽기락
+2. 비관적 잠금(db tx lock)
+- LockModeType.PESSIMISTIC_WRITE
+- LockModeType.PESSIMISTIC_READ
